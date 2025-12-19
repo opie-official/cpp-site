@@ -1,0 +1,24 @@
+#main-fourth-page{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3%;
+
+}
+
+#main-fourth-info{
+    position: relative;
+    top: 15%;
+    widtH: 90%;
+    height: 70%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0 2%;
+    justify-content: center;
+    align-items: center;
+
+}

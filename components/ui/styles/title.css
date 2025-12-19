@@ -1,0 +1,13 @@
+
+.title {
+    border-bottom: 5px solid white;
+    color: white;
+    text-align: start;
+    font: 25pt "Roboto medium";
+    height: 65px;
+    width: fit-content;
+    display: inline-flex;
+    position: absolute;
+    left: 7%;
+    top: 5%;
+}

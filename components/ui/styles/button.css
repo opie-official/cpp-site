@@ -1,0 +1,13 @@
+.button{
+    border-radius: 20px;
+    text-decoration: none;
+    width: 200px;
+    height: 50px;
+    &>button{
+        background: var(--button);
+        color: white;
+        width: 100%;
+        height: 100%;
+        font-size: 20pt;
+    }
+}

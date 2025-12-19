@@ -1,0 +1,78 @@
+#main-first-page{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+
+}
+
+#main-first-right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+}
+
+#main-logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 70%;
+    width: 100%;
+    gap: 5%;
+}
+#main-title{
+    color: white;
+    font-size: 100pt;
+    font-family: "Roboto medium", serif;
+}
+
+#main-subtitle{
+    color: #979797;
+    font-size: 25pt;
+    font-family: "Roboto Light", serif;
+    width: 70%;
+}
+
+#main-annotation{
+    color: #979797;
+    font-size: 20pt;
+    font-family: "Roboto Light", serif;
+    width: 70%;
+}
+
+#main-buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 25%;
+    gap: 15%;
+    position: relative;
+    bottom: 5%;
+}
+
+.pop{
+    position: absolute;
+    width: 120%;
+    height: 70%;
+    bottom: 65%;
+    right: 25%;
+    background: radial-gradient(ellipse 50.00% 50.00% at 50.00% 50.00%, rgba(25.25, 82.69, 255, 0.19) 0%, rgba(115, 115, 115, 0) 100%);
+    opacity: 0.75;
+}
+
+#main-first-img{
+    width: 50%;
+
+    &>img{
+        width: 80%;
+        position: absolute;
+        top: 10%;
+        left: 32%;
+    }
+}
+

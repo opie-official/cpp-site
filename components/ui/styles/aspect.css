@@ -1,0 +1,21 @@
+.aspect{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    background: transparent;
+    width: 30%;
+    height: 50%;
+    gap: 18%;
+}
+
+.aspect-title{
+    font: 25pt "Roboto medium";
+    color: white;
+}
+
+.aspect-text{
+    width: 60%;
+    font: 15pt "Roboto Light";
+    color: white;
+}

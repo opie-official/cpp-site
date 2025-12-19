@@ -1,0 +1,11 @@
+.spot{
+    /*background: radial-gradient(ellipse 50.00% 50.00% at 50.00% 50.00%, rgba(25.25, 82.69, 255, 0.19) 0%, rgba(25.25, 82.69, 255,0) 100%);
+    */
+    background: radial-gradient(
+            ellipse 50% 50% at center,
+            rgba(25, 83, 255, 0.1875) 0%,
+            rgba(25, 83, 255, 0.12) 30%,
+            rgba(25, 83, 255, 0.06) 55%,
+            rgba(115, 115, 115, 0) 100%
+    );
+}

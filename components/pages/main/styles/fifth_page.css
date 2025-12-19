@@ -1,0 +1,54 @@
+#main-fifth-page{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3%;
+
+    overflow: visible;
+}
+
+#main-fifth-content{
+    display: flex;
+    width: 87%;
+    height: 100%;
+    justify-content: start;
+    gap: 30%;
+}
+
+#main-fifth-desc{
+    width: 23%;
+    height: 80%;
+    font-size: 15pt;
+    color: var(--subtitle);
+    justify-content: start;
+    align-items: center;
+    display: flex;
+
+
+}
+#main-fifth-logos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 80%;
+    margin-top: 5%;
+    gap: 0 20%;
+
+}
+
+.main-fifth-img{
+    width: 15%;
+    aspect-ratio: 1/1;
+    &>img{
+        width: 80%;
+    }
+}
+
+#main-fifth-title{
+    top: 10%;
+}

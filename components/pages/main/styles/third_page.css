@@ -1,0 +1,17 @@
+#main-third-page{
+    width: 100vw;
+    height: 200vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#main-third-aspects{
+    width: 90%;
+    height: 50%;
+    display: flex;
+    gap: 5%;
+    align-items: center;
+    justify-content: center;
+}

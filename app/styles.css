@@ -1,0 +1,21 @@
+#main-page{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: var(--bg);
+    overflow: auto;
+    &::-webkit-scrollbar{
+        width: 0;
+        height: 0;
+    }
+}
+
+.page-scroll{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    &::-webkit-scrollbar{
+        width: 0;
+        height: 0;
+    }
+}

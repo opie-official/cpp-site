@@ -1,0 +1,33 @@
+#main-second-page{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3%;
+
+    overflow: visible;
+}
+
+
+#main-second-news{
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 60%;
+    position: relative;
+    top: 15%;
+    gap: 5%;
+    left: 0;
+}
+
+
+#main-blog-button{
+    position: relative;
+    top: 20%;
+    left: -33%;
+}

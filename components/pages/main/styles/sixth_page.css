@@ -1,0 +1,29 @@
+#main-sixth-page {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3%;
+
+    overflow: visible;
+}
+
+
+#main-sixth-content{
+    width: 90%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 10%;
+    position: relative;
+    top: 5%;
+}
+
+#main-sixth-p{
+    font: 30pt "Roboto medium";
+    color: white;
+}
