@@ -1,0 +1,101 @@
+.install-section{
+    margin-top: 2%;
+    width: 100%;
+
+
+}
+
+.install-section-h{
+    font: 20pt "Roboto";
+    color: white;
+    width: 100%;
+}
+.install-section-sub{
+    margin-top: 3%;
+    width: 100%;
+    color: var(--subtitle);
+    font: 15pt "Roboto Light";
+}
+
+#install-one-msvc-buttons{
+    margin-top: 3%;
+    width: 100%;
+    gap: 10%;
+    height: 30vh;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+
+}
+#install-one-msvc-buttons-buttons{
+    gap: 20%;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+#install-msvc1, #install-msvc2{
+    width: 100%;
+    height: 20%;
+}
+#install-one-msvc-buttons-img{
+    width: 30%;
+    height: 30vh;
+    overflow: visible;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    &>img{
+        width: 200%;
+    }
+}
+
+
+.install-section-list{
+    width: 90%;
+    height: 100%;
+    margin: 5% 0;
+    flex: 1 1 auto;
+    position: relative;
+    left: 5%;
+
+}
+.install-section-pos{
+    width: 100%;
+    color: white;
+    font: 20pt "Roboto";
+
+
+}
+
+.install-section-option{
+    width: 80%;
+    height: 100%;
+    flex: 1 1 auto;
+    position: relative;
+    left: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 3vh;
+    margin-top: 3%;
+
+}
+.install-section-pos-sub{
+    width: 100%;
+    color: var(--subtitle);
+    font: 20pt "Roboto Light";
+
+}
+.install-code{
+    display: flex;
+    height: 7vh !important;
+    width: 100% !important;
+}

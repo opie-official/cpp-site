@@ -124,7 +124,9 @@ const buttons: BtnProps[][]=[
 
 
 interface Props{
-    is?: boolean
+    is?: boolean;
+    height?:number;
+    margin?: number;
 }
 
 
@@ -133,10 +135,13 @@ export default function Footer(props: Props){
         <footer id={"footer"} style={
             props.is?{
                 position: "absolute",
-                top: "60%"
+                top: "60%",
+                height: props.height && `${props.height}vh !important`
             }:{
               position: "relative",
-                marginTop: "5%"
+                marginTop: props.margin?`${props.margin}%`:"5%",
+                height: props.height && `${props.height}vh !important`
+
             }
         }>
             <div id={"footer-sections"}>

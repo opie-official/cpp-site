@@ -7,7 +7,8 @@ interface Props{
     height: number;
     x: number;
     y: number;
-    is?:boolean
+    is?:boolean;
+    rotation?:number;
 }
 
 
@@ -25,6 +26,7 @@ export default function Spot(props: Props){
             width: `${props.width}%`,
             height: `${props.height}%`,
             opacity: 0.75,
+            rotate:`${props.rotation}deg`
         }}
         ></div>
     )

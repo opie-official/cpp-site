@@ -9,13 +9,14 @@ interface Props{
     text: string;
     path: string;
     id?:string
+    classname?:string;
 }
 
 
 
 export default function Button(props: Props){
     return (
-        <Link id={props.id} className={"button"} href={props.path}>
+        <Link id={props.id} className={["button", props.classname].join(" ")} href={props.path}>
             <button>
                 {props.text}
             </button>

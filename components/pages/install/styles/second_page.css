@@ -1,0 +1,31 @@
+#install-second-page{
+    margin-top: 10%;
+    width: 100vw;
+    height: 300vh;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+}
+#install-second-h{
+    font: 40pt "Roboto medium";
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+
+#install-second-editors{
+    margin-top: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: start;
+    width: 90%;
+    height: 80%;
+    gap: 0 5%;
+
+}
+
+.editor-install{
+    width: 73% !important;
+}

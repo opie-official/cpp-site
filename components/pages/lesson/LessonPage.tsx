@@ -103,13 +103,12 @@ export default function LessonPage(props: Props){
 
 
     return (
-        <div id={"lesson-page"}>
             <div id={"lesson-content"}>
                 <aside id={"lesson-aside"}></aside>
                 <div id={"lesson-main"}>
                     <Spot  x={0} y={-60} width={100} height={100} />
                     <p id={"lesson-title"}>{props.lesson_.title}</p>
-                    <div id={"lesson-text"} /*dangerouslySetInnerHTML={{__html:lesson_.text_}}*/>
+                    <div id={"lesson-text"} >
                         <ReactMarkdown remarkPlugins={[remarkBreaks, remarkGfm]}
                                        rehypePlugins={[rehypeSanitize, rehypeRaw]}
                                        components={{
@@ -139,6 +138,6 @@ export default function LessonPage(props: Props){
                         {isButton2 && button2}
                     </div>
                 </div>
-            </div>
+
         </div>)
 }

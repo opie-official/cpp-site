@@ -1,0 +1,48 @@
+.install-ide{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding: 1%;
+    border-radius: 50px;
+    width: 35%;
+    height: 31%;
+    background: #d9d9d9;
+    z-index: 100;
+}
+
+.ide-icon{
+    width: 30%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    &>img{
+        width: 100%;
+    }
+}
+
+.ide-h{
+    font: 30pt "Roboto medium";
+}
+.ide-only{
+    font: 15pt "Roboto light";
+    height: 5%;
+}
+.ide-desc{
+    margin-top: 2%;
+    font: 15pt Roboto;
+    width: 90%;
+    height: 30%;
+}
+.ide-buttons{
+    margin-top: 3%;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: end;
+    gap: 5%;
+    align-items: center;
+    flex-direction: column;
+}
