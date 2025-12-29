@@ -4,13 +4,16 @@ import "./styles/code_example.css"
 import {ReactNode, useState} from "react";
 
 
-
-const code=[
+//@ts-ignore
+const code = [
     `#include <iostream>
+
 int main() {
-    std::string user_name = "user";
+  
+    std::string user_name = "user"; 
     std::cout << "Hello, " << user_name << "!" << std::endl;
     return 0;
+    
 }
 `,
     `#include <iostream>
@@ -28,7 +31,16 @@ int main() {
     });
     auto f2 = std::async(std::launch::async, [&count] {
         for (int i = 0; i < count; ++i) {
-            std::cout << "2";`,
+            std::cout << "2";
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        }
+    });
+    f1.get();
+    f2.get();
+    std::cout << std::endl;
+    return 0;
+}
+`,
     `#include <iostream>
 
 class Car {
@@ -90,52 +102,274 @@ int main() {
     return 0;
 }
 `,
-    `
-#include <avr/io.h> 
+    `#include <avr/io.h> 
 #include <util/delay.h> 
 
 int main() {
+
   DDRB |= (1 << PB5);
+
   while (1) {
     PORTB |= (1 << PB5);
     _delay_ms(1000); 
+
     PORTB &= ~(1 << PB5);
     _delay_ms(1000); 
   }
+
   return 0;
-}`,
+}
+    `,
+]
+
+const names = [
+    "Simple",
+    "Asynchronous",
+    "Object Oriented",
+    "Functional",
+    "Cross-platform",
+    "Tests",
+    "Electronics",
 ]
 
 
-
-
-
-
-interface Props{
+interface Props {
     children: ReactNode
 }
 
 
-
-const regex=/(?<=#\s*\w+\s*)(<\w+>|"\w+")|\d+|'.*'|".*"|[+\-*/%=:;.,^<>!~|&()\[\]{}?]+|\w+/gm;
-
-
-function CodeParser(props: Props){
+const regex = /[\n\t\r\s]|#\s*\w+|(?<=#\s*\w+\s*)(<.+?>|".+?")|\d+(\.\d+)?|'.*?'|".*?"|[+\-*\/%=:;.,^<>!~|&()\[\]{}?]+|\w+/gm;
 
 
+const enum Typ {
+    KW,
+    ID,
+    OP,
+    STR,
+    NUM,
+    OTHER,
+    CLASS,
+    FN,
+    LIB,
+    PREPROC,
+    ENDL
+}
 
+const colors = [
+    {
+        val: `#FA8C42`,
+        typ: Typ.KW
+    },
+    {
+        val: `white`,
+        typ: Typ.ID
+    },
+    {
+        val: `white`,
+        typ: Typ.OP
+    },
+    {
+        val: `#409759`,
+        typ: Typ.STR
+    },
+    {
+        val: `#007CE8`,
+        typ: Typ.NUM
+    },
+    {
+        val: `white`,
+        typ: Typ.OTHER
+    },
+    {
+        val: `#DBAFFF`,
+        typ: Typ.CLASS
+    },
+    {
+        val: `#27A5FF`,
+        typ: Typ.FN
+    },
+    {
+        val: `#2CA64F`,
+        typ: Typ.LIB
+    },
+    {
+        val: `#A69C15`,
+        typ: Typ.PREPROC
+    },
+    {
+        val: `white`,
+        typ: Typ.ENDL
+    },
+]
+
+interface Lexeme {
+    typ: number;
+    val: string;
+}
+
+const kw = [
+    "class",
+    "int",
+    "float",
+    "double",
+    "short",
+    "long",
+    "auto",
+    "return",
+    "for",
+    "while",
+    "if",
+    "else",
+    "switch",
+    "case",
+    "default",
+    "continue",
+    "break",
+    "const",
+    "public",
+    "protected",
+    "private",
+    "final",
+]
+
+interface Token {
+    val: string;
+    start: number;
+    length: number;
+}
+
+const word = /[A-Za-z_][A-Za-z0-9_]+/gm
+const oper = /[+\-*\/%=:;.,^<>!~|&()\[\]{}?]+/gm
+const lib = /<.+?>|".+?"/gm
+const preproc = /#\s*\w+/gm
+const str = /".*?"|'.*?'/gm
+const num = /\d+(\.\d+)?/gm
+const spec = /[\s\t\r]/gm
+
+
+function CodeParser(props: Props) {
+    const matches = props.children?.toString().matchAll(regex)
+    const res = [...matches as RegExpStringIterator<RegExpExecArray>];
+    const tokens: Token[] = []
+    for (const i of res) {
+        tokens.push({
+            val: i[0],
+            start: i.index,
+            length: i[0].length
+        })
+    }
+    console.log(JSON.stringify(tokens.map(el=>el.val)))
+    const lexemes: Lexeme[] = []
+
+    for (const token of tokens) {
+
+        if (preproc.test(token.val)) {
+            lexemes.push({
+                val: token.val,
+                typ: Typ.PREPROC
+            })
+        } else if (lib.test(token.val)) {
+            lexemes.push({
+                val: token.val,
+                typ: Typ.LIB
+            })
+        } else if (word.test(token.val)) {
+            if (kw.includes(token.val)) {
+                lexemes.push({
+                    val: token.val,
+                    typ: Typ.KW
+                })
+            } else {
+
+                lexemes.push({
+                    val: token.val,
+                    typ: Typ.ID
+                })
+            }
+            // } else if ("+-*/%=:;.,^<>!~|&()[]{}?".includes(token.val)) {
+        }  else if (oper.test(token.val) || "+-*/%=:;.,^<>!~|&()[]{}?".includes(token.val)){
+            lexemes.push({
+                typ: Typ.OP,
+                val: token.val
+            })
+
+        } else if (str.test(token.val)) {
+            lexemes.push({
+                typ: Typ.STR,
+                val: token.val
+            })
+        } else if (num.test(token.val)) {
+            lexemes.push({
+                typ: Typ.NUM,
+                val: token.val
+            })
+
+        } else if (spec.test(token.val)) {
+            if (token.val == "\n") {
+                lexemes.push({
+                    typ: Typ.ENDL,
+                    val: token.val
+                })
+            } else {
+                lexemes.push({
+                    typ: Typ.OTHER,
+                    val: token.val
+                })
+            }
+        } else if ("\n" == token.val) {
+            lexemes.push({
+                val: "\n",
+                typ: Typ.ENDL
+            })
+        } else if (token.val == " ") {
+            lexemes.push({
+                val: " ",
+                typ: Typ.OTHER
+            })
+        }
+    }
+
+    return (
+        <div id={"code-parser"}>
+            {
+                lexemes.map((el, key) => {
+                    if (el.typ == Typ.ENDL) {
+                        return <br key={key}/>
+                    } else {
+                        return <span key={key} style={{
+                            color: +el.typ < colors.length ?
+                                colors[+el.typ].val : "white",
+                            font: "10pt Jetbrains Mono",
+                            whiteSpace: "pre"
+                        }}>{el.val}</span>
+                    }
+                })
+            }
+        </div>
+    )
 
 }
 
 
-export default function CodeExample(){
+export default function CodeExample() {
 
 
-    const [cell, setCell]=useState(0);
+    const [cell, setCell] = useState(0);
 
 
     return (<div id={"code-example"}>
-        <div></div>
+        <div id={"code-example-label"}>
+            {names.map((el, key) => {
+                return <button key={key} onClick={() => setCell(key)}
+                               style={{
+                                   borderBottom: cell == key ? "1px solid white" : "0 solid",
+                               }}
+                >{el}</button>
+            })}
+        </div>
+        <div id={"code-example-scroll"}>
+            <CodeParser>{code[cell]}</CodeParser>
+        </div>
     </div>)
 }
 

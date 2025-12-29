@@ -40,7 +40,7 @@ function NavGeneral() {
     return (
         <Link href={"/"} id={"nav-general"}>
             <button>
-                <img src={"/cpp_logo.png"}/>
+                <img src={"/logo.svg"}/>
                 <p id={"nav-general-p"}>C++26</p>
             </button>
         </Link>
@@ -64,7 +64,7 @@ export default function NavBar() {
         },
         {
             text: "Standard",
-            path: "/standard"
+            path: "https://isocpp.org/std/the-standard"
         },
         {
             text: "Learn",

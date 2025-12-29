@@ -32,17 +32,17 @@
         background: transparent;
         color: white;
         font-size: 13pt;
-        border-radius:20pt;
+        /*border-radius:20pt;*/
         transition: 0.2s all;
         &:hover{
-            background: var(--button);
+            background: rgba(255,255,255,0.1);
         }
     }
 }
 
 #nav-general{
     /*margin-top: 2%;*/
-    /*margin-left: 2%;*/
+    margin-left: 0.5%;
     width: 10%;
     height: 100%;
     display: flex;
@@ -55,11 +55,11 @@
         display: flex;
         align-items: center;
         justify-content: start;
-        gap: 15%;
+        gap: 5%;
         font-size: 13pt;
         color: white;
         &>img{
-            height: 100%;
+            height: 80%;
         }
     }
 }

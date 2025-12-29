@@ -1,5 +1,5 @@
 'use client'
-
+import "./styles/code.css"
 
 interface Props{
     text: string;
@@ -35,6 +35,7 @@ export default function Code(props: Props){
                 padding: "2% 1%"
 
             }}
+
              onClick={click}
         >
             <pre>

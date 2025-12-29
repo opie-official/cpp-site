@@ -19,20 +19,9 @@ export default function ExampleContent(props: Props){
     return (
         <div id={"example-content"}>
             <aside id={"example-aside"}>
-                {/*{articles.map((el, key) => {*/}
-                {/*    return <Link key={key} href={`/examples/example?example=${id}#${el.anchor}`}*/}
-                {/*    style={{*/}
-                {/*        height:"10vh",*/}
-                {/*        marginTop: "20vh",*/}
-                {/*        textDecoration:"none",*/}
-                {/*        color:"white"*/}
-                {/*    }}*/}
-                {/*    >*/}
-                {/*        <p>{el.name}</p>*/}
-                {/*    </Link>*/}
-                {/*})}*/}
+
             </aside>
-            <Page /*setArticles={setArticles}*/ text={data.text_}/>
+            <Page text={data.text_}/>
         </div>
 
     )

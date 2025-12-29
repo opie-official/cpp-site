@@ -1,10 +1,11 @@
 #example-main{
     padding: 5% 2%;
     width: 85%;
-    flex: 1;
+    height: 100%;
+    /*flex: 1;*/
     min-width: 0;
     min-height: 0;
-    overflow: auto;
+    /*overflow: auto;*/
     position: relative;
     left: 10%;
 }

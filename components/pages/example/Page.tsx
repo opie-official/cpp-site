@@ -10,9 +10,6 @@ import remarkBreaks from "remark-breaks";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
-import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
-import {darcula} from "react-syntax-highlighter/dist/esm/styles/prism";
-import Footer from "@/components/ui/Footer";
 
 
 interface Props {
@@ -24,17 +21,6 @@ interface Props {
 export default function Page(props: Props) {
 
     const [visible, setVisible] = React.useState(false);
-    let id_counter = 0;
-    // const ref=useRef<HTMLDivElement>(null);
-    // const {setArticles} = props;
-    //
-    // const id_s: IArticle[] = []
-    //
-    // useEffect(() => {
-    //     setArticles(id_s);
-    //
-    // }, [])
-
 
     return (
         <div id={"example-main"}>
@@ -46,27 +32,18 @@ export default function Page(props: Props) {
                     components={{
                         //@ts-ignore
                         code: ({node, inline, className, children, ...props}) => {
-                            //const match = /language-(\w+)/.exec(className || '')
                             return (
                                 <Code visible={visible} setVisible={setVisible}
                                       text={children ? children.toString() : ""}/>
                             )
                         },
                         h1: ({children}) => {
-                            const id = id_counter + 1;
-                            id_counter += 1;
-                            // id_s.push({
-                            //     name: children?.toString() ?? "",
-                            //     anchor: `h-${id}`
-                            // })
                             return <h1
                                 style={{
                                     fontFamily: "Roboto medium, serif",
                                     color: "white",
                                     margin: "2% 0",
                                 }}
-                                className={"h"}
-                                // id={`h-${id}`}
                             >{children}</h1>
                         }
                     }}

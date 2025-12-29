@@ -154,7 +154,7 @@ export default function Footer(props: Props){
             <Link href={"/"} id={"footer-main"}>
                 <div id={"footer-main-main"}>
                     <div id={"footer-main-img"}>
-                        <img src={"/cpp_logo.png"}/>
+                        <img src={"/logo.svg"}/>
                     </div>
                     <p id={"footer-main-p"}>C++</p>
                 </div>

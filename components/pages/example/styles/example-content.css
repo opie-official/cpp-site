@@ -1,13 +1,15 @@
 #example-content{
     display: flex;
     width: 100vw;
+    height: 100%;
     flex: 1;
     min-height: 0;
     /*overflow: auto;*/
 }
 #example-aside{
     width: 15%;
-    border-right: 2px solid var(--subtitle);
+    /*height: 100%;*/
+    /*border-right: 2px solid var(--subtitle);*/
     /*align-self: stretch;*/
     padding-top: 5%;
 

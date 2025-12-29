@@ -39,6 +39,7 @@ export default function ThirdPage(){
             <div id={"main-third-aspects"}>
                 {aspects.map((el, key)=><Aspect key={key} {...el}/>)}
             </div>
+            <p id={"main-third-can"}>C++ can be</p>
             <CodeExample/>
         </div>
     )
