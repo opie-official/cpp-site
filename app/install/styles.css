@@ -1,13 +1,27 @@
-#install-page{
+#install-page {
     width: 100vw;
     height: 100vh;
     background: var(--bg);
-    overflow-y: scroll;
     position: relative;
 
 }
 
-#install-h{
+#install-scroll {
+    overflow-y: scroll;
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+}
+
+#install-in {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+
+#install-h {
     margin-top: 10%;
     font: 40pt "Roboto medium";
     color: white;
@@ -16,8 +30,7 @@
 }
 
 
-
-#install-pages{
+#install-pages {
     width: 100%;
 
 }
