@@ -10,6 +10,7 @@
 }
 
 #code-example-label{
+    position: relative;
     margin-top: 0.4%;
     width: 90%;
     height: 8%;
@@ -17,11 +18,16 @@
     gap: 5%;
 
     &>button{
+        z-index: 20;
         font-size: 12pt;
         height: 100%;
         border: 0 solid;
         background: transparent;
-        color: white;
+        transition: all 0.1s;
+        color: var(--subtitle);
+        &:hover {
+            color: white;
+        }
     }
 }
 

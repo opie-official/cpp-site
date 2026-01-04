@@ -1,8 +1,8 @@
 'use client'
 
 import "./styles/code_example.css"
-import {ReactNode, useState} from "react";
-
+import {ReactNode, useRef, useState} from "react";
+import {motion} from "framer-motion"
 
 //@ts-ignore
 const code = [
@@ -238,7 +238,7 @@ interface Token {
     length: number;
 }
 
-const word = /[A-Za-z_][A-Za-z0-9_]+/gm
+const word = /[A-Za-z_]\w+/gm
 const oper = /[+\-*\/%=:;.,^<>!~|&()\[\]{}?]+/gm
 const lib = /<.+?>|".+?"/gm
 const preproc = /#\s*\w+/gm
@@ -258,7 +258,7 @@ function CodeParser(props: Props) {
             length: i[0].length
         })
     }
-    console.log(JSON.stringify(tokens.map(el=>el.val)))
+    console.log(JSON.stringify(tokens.map(el => el.val)))
     const lexemes: Lexeme[] = []
 
     for (const token of tokens) {
@@ -287,7 +287,7 @@ function CodeParser(props: Props) {
                 })
             }
             // } else if ("+-*/%=:;.,^<>!~|&()[]{}?".includes(token.val)) {
-        }  else if (oper.test(token.val) || "+-*/%=:;.,^<>!~|&()[]{}?".includes(token.val)){
+        } else if (oper.test(token.val) || "+-*/%=:;.,^<>!~|&()[]{}?".includes(token.val)) {
             lexemes.push({
                 typ: Typ.OP,
                 val: token.val
@@ -350,25 +350,100 @@ function CodeParser(props: Props) {
 
 }
 
+interface LineProps {
+    cell: number;
+    width: number;
+    left: number;
+}
+
+function Line(props: LineProps) {
+
+    const [prevWidth, setPrevWidth] = useState(0);
+    const [prevLeft, setPrevLeft] = useState(0);
+
+    return (
+        <motion.div
+            style={{
+                position: "absolute",
+                height: "100%",
+            }}
+            initial={false}
+            animate={{
+                left: [prevLeft, props.left],
+                width: [prevWidth, props.width]
+            }}
+            onAnimationComplete={() => {
+                setPrevWidth(props.width);
+                setPrevLeft(props.left);
+            }}
+
+        >
+            <div id={"code-example-line"}
+                 style={{
+                     width: "100%",
+                     height: "100%",
+                     // background: "white"
+                     borderBottom: "1px solid white"
+                 }}
+            />
+        </motion.div>
+
+    )
+}
+
 
 export default function CodeExample() {
 
 
     const [cell, setCell] = useState(0);
+    const refs = useRef<(HTMLButtonElement | null)[]>([]);
 
+    const [opac, setOpac] = useState(2);
+    const opacity=0.4;
+
+    const cur = refs.current[cell];
+
+    const ref1=useRef<HTMLButtonElement>(null)
 
     return (<div id={"code-example"}>
         <div id={"code-example-label"}>
             {names.map((el, key) => {
-                return <button key={key} onClick={() => setCell(key)}
-                               style={{
-                                   borderBottom: cell == key ? "1px solid white" : "0 solid",
-                               }}
-                >{el}</button>
+                return <button
+                    key={key}
+                    onClick={() => {setCell(key); setOpac(0)}}
+                    ref={el => {
+                        if (key==0){
+                            ref1.current=el
+                        }
+                        refs.current[key] = el;
+                    }}
+                >
+                    {el}
+                </button>
             })}
+            <Line cell={cell} width={cur?.offsetWidth??50}
+                  left={cur?.offsetLeft??0}/>
         </div>
         <div id={"code-example-scroll"}>
-            <CodeParser>{code[cell]}</CodeParser>
+            <motion.div
+                initial={false}
+                animate={{
+                    opacity: opac == 0 ? [1, opacity] : opac == 1 ? [opacity, 1] : [1, 1]
+                }}
+                transition={{
+                    duration: (opac==0? 0.25: 0.3),
+                    delay: opac==1? 0.3:0
+                }}
+                onAnimationComplete={() => {
+                    if (opac == 0) {
+                        setOpac(1)
+                    }else if (opac==1) {
+                        setOpac(2);
+                    }
+                }}
+            >
+                <CodeParser>{code[cell]}</CodeParser>
+            </motion.div>
         </div>
     </div>)
 }

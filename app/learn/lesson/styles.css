@@ -11,12 +11,7 @@
     overflow-x:visible;
 }
 
-#lesson-aside{
-    width: 15%;
-    border-right: 1px solid var(--subtitle);
-    height: 100%;
-    overflow: visible;
-}
+
 #lesson-main{
     width: 85%;
     height: 100%;

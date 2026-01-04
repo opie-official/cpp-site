@@ -21,11 +21,17 @@ export default function Install(){
     return (
         <div id={"install-page"}>
             <NavBar/>
-            <p id={"install-h"}>Install C++</p>
-            <div id={"install-pages"}>
-                <FirstPage/>
-                <SecondPage/>
-                <Footer margin={-10} is top={650} height={33}/>
+            <div id={"install-in"}>
+                <div id={"install-scroll"}>
+                    <div id={"install-in2"}>
+                        <p id={"install-h"}>Install C++</p>
+                        <div id={"install-pages"}>
+                            <FirstPage/>
+                            <SecondPage/>
+                        </div>
+                    </div>
+                    <Footer is={false} margin={-10} height={43}/>
+                </div>
             </div>
         </div>
     )
