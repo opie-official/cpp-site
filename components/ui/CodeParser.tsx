@@ -7,6 +7,7 @@ interface Props {
 const kw = [
     "auto",
     "int",
+    "bool",
     "double",
     "short",
     "long",
@@ -42,7 +43,12 @@ const kw = [
     "import",
     "export",
     "t_thread",
-    "",
+    "new",
+    "delete",
+    "const",
+    "constexpr",
+    "constinit",
+    "consteval",
     "",
 ]
 type RuleName = "preproc" | "lib" | "string" | "numb" | "oper" | "id"|"spec" | "comment";

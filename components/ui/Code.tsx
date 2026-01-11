@@ -1,6 +1,7 @@
 'use client'
 import "./styles/code.css"
 import {useState} from "react";
+import CodeParser from "@/components/ui/CodeParser";
 
 interface Props{
     text: string;
@@ -10,6 +11,7 @@ interface Props{
     width?:number
     height?:number
     margin?:string;
+    isCpp?:boolean
 }
 
 
@@ -41,7 +43,8 @@ export default function Code(props: Props){
                 alignItems: "center",
                 color: "var(--subtitle)",
                 font:"12pt 'Roboto Light'",
-                padding: "2% 1%"
+                padding: "2% 2%",
+                borderRadius:"10px"
 
             }}
              onMouseEnter={enter}
@@ -50,7 +53,7 @@ export default function Code(props: Props){
             <div className={"code-in"}>
                 <pre>
                 <code>
-                    {props.text}
+                    {props.isCpp? <CodeParser text={props.text}/>:props.text}
                 </code>
             </pre>
             </div>

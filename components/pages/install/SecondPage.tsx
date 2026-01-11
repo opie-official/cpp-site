@@ -29,7 +29,7 @@ const ide: I_IDE[]=[
         desc:"A lightweight, cross-platform code editor with an extension-based ecosystem. It supports many languages and tools via plugins and is popular for web development, scripting, and general-purpose programming rather than heavy IDE workflows.",
         children:[
             <Button classname={"editor-install"} key={1} text={`Install Visual Studio Code`} path={`https://code.visualstudio.com/`}/>,
-            <Button2 isDark classname={"editor-install"} key={2} text={`Install Extension for C++`} path={`https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools`}/>,
+            <Button2 borderless isDark classname={"editor-install"} key={2} text={`Install Extension for C++`} path={`https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools`}/>,
         ]
     },
     {

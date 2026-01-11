@@ -12,13 +12,14 @@ interface Props {
     classname?: string;
     isDark?:boolean;
     image?:string;
+    borderless?:boolean
 }
 
 
 export default function Button2(props: Props) {
     return (
         <Link id={props.id} className={
-            [(!props.isDark ? "button2" : "button2-d"), props.classname].join(" ")
+            [(!props.isDark ? "button2" : "button2-d"), (props.borderless?"button2-br":""), props.classname].join(" ")
         }
               href={props.path}>
             <button>

@@ -3,7 +3,9 @@
   --bg: #131313;
   --fg: #252525;
   --subtitle: #BABABA;
-  --button: #043981;
+  --button: linear-gradient(20deg, #1f62bd, #0d55b4);
+  --button-hov: linear-gradient(20deg, #2d7ae1, #1464cd);
+  /*--button: #043981;*/
 }
 
 *{

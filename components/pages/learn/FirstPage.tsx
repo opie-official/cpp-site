@@ -2,6 +2,7 @@
 import "./styles/first_page.css"
 import Spot from "@/components/ui/Spot";
 import {useEffect} from "react";
+import CodeParser from "@/components/ui/CodeParser";
 
 
 interface StartProps{
@@ -76,6 +77,52 @@ export default function FirstPage(props: Props){
     return (
         <div id={"learn-first-page"}>
             <div id={"learn-start"}>
+                <div style={{
+                    position:"absolute",
+                    width: "70%"
+                }}>
+                    <CodeParser text={`
+                    #include <atomic>
+
+template<typename T>
+class SPSCQueue {
+public:
+    explicit SPSCQueue(size_t size)
+        : size_(size), buffer_(new T[size]) {}
+
+    ~SPSCQueue() {
+        delete[] buffer_;
+    }
+
+    bool push(const T& value) {
+        auto next = (head_ + 1) % size_;
+        if (next == tail_.load(std::memory_order_acquire))
+            return false;
+
+        buffer_[head_] = value;
+        head_ = next;
+        return true;
+    }
+
+    bool pop(T& value) {
+        auto tail = tail_.load(std::memory_order_relaxed);
+        if (tail == head_)
+            return false;
+
+        value = buffer_[tail];
+        tail_.store((tail + 1) % size_, std::memory_order_release);
+        return true;
+    }
+
+private:
+    size_t size_;
+    T* buffer_;
+    size_t head_ = 0;
+    std::atomic<size_t> tail_{0};
+};
+
+                    `}/>
+                </div>
                 <Spot x={0} y={25} width={100} height={130} />
                 <StartMenu chapter={has!==null?json.chapter:0} has={has!==null}  chapters={props.chapters}/>
             </div>

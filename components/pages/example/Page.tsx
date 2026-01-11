@@ -43,7 +43,7 @@ export default function Page(props: Props) {
                         //@ts-ignore
                         code: ({node, inline, className, children, ...props}) => {
                             return (
-                                <Code visible={visible} setVisible={setVisible}
+                                <Code isCpp visible={visible} setVisible={setVisible}
                                       text={children ? children.toString() : ""}/>
                             )
                         },
@@ -54,7 +54,7 @@ export default function Page(props: Props) {
                                        style={{
                                            fontFamily: "Roboto medium, serif",
                                            color: "white",
-                                           margin: "2% 0",
+                                           margin: "4% 0",
                                        }}
                             >{children}</h1>
                         }
