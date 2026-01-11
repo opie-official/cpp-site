@@ -179,8 +179,6 @@ export default function CodeParser({text}: Props) {
 
     return (
 
-        <div className={"code-layer"}>
             <pre>{renderSegments(segs)}</pre>
-        </div>
     );
 }

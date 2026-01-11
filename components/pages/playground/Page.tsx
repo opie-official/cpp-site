@@ -8,7 +8,7 @@ import CodeParser from "@/components/ui/CodeParser";
 export default function Page() {
 
     const [text, setText] = useState("")
-    const [am, setAm]=useState(1)
+    const [am, setAm] = useState(1)
 
     const sizerRef = useRef<HTMLDivElement | null>(null);
     const rawRef = useRef<HTMLTextAreaElement | null>(null);
@@ -42,27 +42,27 @@ export default function Page() {
     }, [text]);
 
 
-    function genRows(){
+    function genRows() {
         const rows: number[] = [];
-        for (let i=1;i<=am;i++){
+        for (let i = 1; i <= am; i++) {
             rows.push(i);
         }
 
-        return rows.map((el,key)=>{
+        return rows.map((el, key) => {
             return <p key={key}>{el}</p>
         })
     }
 
-    const ref=useRef<HTMLTextAreaElement>(null)
-    const ref2=useRef<HTMLDivElement>(null)
+    const ref = useRef<HTMLTextAreaElement>(null)
+    const ref2 = useRef<HTMLDivElement>(null)
 
-    function select(){
+    function select() {
         ref.current?.select()
     }
 
     useEffect(() => {
         ref2.current?.addEventListener("click", select)
-        return ()=>ref2.current?.removeEventListener("click", select)
+        return () => ref2.current?.removeEventListener("click", select)
     }, []);
 
     return (
@@ -73,13 +73,15 @@ export default function Page() {
                     <div id={"playground-text"}>
                         <div id="playground-sizer">{text + "\n"}</div>
                         <div id={"playground-light"} ref={ref2}>
-                            <CodeParser text={text+"\n"}/>
+                            <div className={"code-layer"}>
+                                <CodeParser text={text + "\n"}/>
+                            </div>
                         </div>
                         <textarea ref={ref}
-                            id={"playground-raw"}
-                            value={text}
-                            onInput={(e) => setText(e.currentTarget.value)}
-                            spellCheck={false}
+                                  id={"playground-raw"}
+                                  value={text}
+                                  onInput={(e) => setText(e.currentTarget.value)}
+                                  spellCheck={false}
                         />
                     </div>
                 </div>
