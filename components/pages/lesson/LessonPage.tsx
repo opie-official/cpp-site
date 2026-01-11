@@ -15,7 +15,6 @@ import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
 import Spot from "@/components/ui/Spot";
 import CodeParser from "@/components/ui/CodeParser";
 import Link from "next/link";
-import {log} from "node:util";
 
 interface Props {
     lessons: ILesson[];
@@ -35,8 +34,7 @@ function Aside(props: { lesson: number }) {
             .replace(/\s+/g, "-")
             .replace(/[^\w\-а-яё]/gi, "");
 
-    useEffect(() => {
-        const scroll = document.getElementById("lesson-main") as HTMLDivElement;
+    useLayoutEffect(() => {
         const root = document.getElementById("lesson-text") as HTMLDivElement | null;
         if (!root) return;
 
@@ -51,34 +49,35 @@ function Aside(props: { lesson: number }) {
         setArticles(list);
         if (headings[0]?.id) setActiveId(headings[0].id);
         console.log(`head ${JSON.stringify(headings.map(h => ({id:h.id, top:h.offsetTop})))}`)
-        const observer = new IntersectionObserver(
-            (entries) => {
 
-                console.log(entries.map(e => ({
-                    id: (e.target as HTMLElement).id,
-                    is: e.isIntersecting,
-                    ratio: e.intersectionRatio,
-                    top: e.boundingClientRect.top
-                })));
-                // берём те, что сейчас видим
-                const visible = entries.filter((e) => e.isIntersecting);
-                console.log(`visible ${JSON.stringify(visible)}`);
-                if (visible.length === 0) return;
-
-                visible.sort((a, b) => (a.boundingClientRect.top - b.boundingClientRect.top));
-
-                setActiveId(visible[0].target.id);
-            },
-            {
-                // root: root,
-                // rootMargin: "0px 0px -70% 0px", // активировать, когда заголовок ближе к верху
-            }
-        );
-
-        headings.forEach((h) => observer.observe(h));
-
-        return () => observer.disconnect();
     }, [props.lesson]);
+
+    useEffect(() => {
+        const scroller = document.getElementById("lesson-main")!;
+        const headings = Array.from(document.querySelectorAll("#lesson-text h1")) as HTMLElement[];
+
+        const onScroll = () => {
+            const scrollerTop = scroller.getBoundingClientRect().top;
+
+            let current: HTMLElement | null = null;
+            console.log(`head ${(headings)}`)
+            for (const h of headings) {
+                const hTop = h.getBoundingClientRect().top - scrollerTop; // позиция внутри scroller viewport
+                console.log(`top ${hTop} ${h.getBoundingClientRect().top} ${scrollerTop}`);
+                if (hTop <= 80) current = h;  // 80px от верха контейнера
+                else break;
+            }
+
+            if (current) setActiveId(current.id);
+        };
+
+        scroller.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+
+        return () => scroller.removeEventListener("scroll", onScroll);
+    }, [props.lesson]);
+
+
     console.log(`articles: ${JSON.stringify(articles)}`);
     console.log(`ID: ${activeId}`);
     return (
@@ -163,7 +162,7 @@ export default function LessonPage(props: Props) {
                     })}
                 </div>
             </div>
-            <div id={"lesson-main"}>
+            <div id={"lesson-main"} >
                 <Spot x={0} y={-60} width={100} height={100}/>
                 <p id={"lesson-title"}>{props.lesson_.title}</p>
                 <div id={"lesson-text"}>

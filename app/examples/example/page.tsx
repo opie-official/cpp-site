@@ -1,15 +1,9 @@
 import "./styles.css"
-import List from "@/components/ui/List";
 import NavBar from "@/components/ui/NavBar";
-import Option from "@/components/ui/Option";
 import React from "react";
-import Page from "@/components/pages/example/Page";
 import API from "@/lib/db";
-import Footer from "@/components/ui/Footer";
-import Link from "next/link";
 import ExampleContent from "@/components/pages/example/ExampleContent";
-import Button from "@/components/ui/Button";
-import {Metadata} from "next";
+
 
 
 
@@ -23,7 +17,8 @@ interface Props{
 
 
 
-export async function generateMetadata(props: Props){
+// @ts-ignore
+export async function generateMetadata(props: Props): Promise<{title: string}>{
     const {example}=await props.searchParams;
     const data = await API.__getExampleById(+example) as IExample;
     return {
