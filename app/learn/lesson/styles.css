@@ -33,13 +33,11 @@
     margin-top: 5%;
     margin-left: 5%;
     color: white;
-    /*font: 17pt "Roboto Light";*/
     width: 70%;
     line-height: 1.5;
     z-index: 200;
     & pre{
         margin: 2% 0;
-        border-radius: 15px;
     }
     & code{
         font-family: "JetBrains Mono", monospace;

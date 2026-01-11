@@ -548,7 +548,7 @@
     </routine>
     <schema id="208" parent="1" name="main">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2025-12-21.11:55:19</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2026-01-11.19:11:46</LastIntrospectionLocalTimestamp>
     </schema>
     <argument id="209" parent="16">
       <ArgumentDirection>R</ArgumentDirection>
@@ -1819,39 +1819,43 @@
       <Position>5</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <foreign-key id="626" parent="610">
+    <column id="626" parent="610" name="lang">
+      <Position>6</Position>
+      <StoredType>TEXT|0s</StoredType>
+    </column>
+    <foreign-key id="627" parent="610">
       <ColNames>chapter</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>chapters</RefTableName>
     </foreign-key>
-    <key id="627" parent="610">
+    <key id="628" parent="610">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="628" parent="611" name="type">
+    <column id="629" parent="611" name="type">
       <Position>1</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="629" parent="611" name="name">
+    <column id="630" parent="611" name="name">
       <Position>2</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="630" parent="611" name="tbl_name">
+    <column id="631" parent="611" name="tbl_name">
       <Position>3</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="631" parent="611" name="rootpage">
+    <column id="632" parent="611" name="rootpage">
       <Position>4</Position>
       <StoredType>INT|0s</StoredType>
     </column>
-    <column id="632" parent="611" name="sql">
+    <column id="633" parent="611" name="sql">
       <Position>5</Position>
       <StoredType>TEXT|0s</StoredType>
     </column>
-    <column id="633" parent="612" name="name">
+    <column id="634" parent="612" name="name">
       <Position>1</Position>
     </column>
-    <column id="634" parent="612" name="seq">
+    <column id="635" parent="612" name="seq">
       <Position>2</Position>
     </column>
   </database-model>

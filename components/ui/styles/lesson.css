@@ -33,12 +33,12 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    flex: 0 0 15%;
+    flex: 0 0 20%;
     aspect-ratio: 1/1;
     background: #18193C;
-    color: #1893FF;
+    color: #379ffb;
     border-radius: 100%;
-    font-size: 15pt;
+    font-size: 20pt;
 }
 
 .lesson-top-title{

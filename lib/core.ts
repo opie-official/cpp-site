@@ -21,12 +21,8 @@ interface IExample {
 }
 
 
-interface IArticle{
-    name: string;
-    anchor: string;
-}
-
 interface AsideArticle {
     id: string;
     title: string;
+    isActive?:boolean
 }
