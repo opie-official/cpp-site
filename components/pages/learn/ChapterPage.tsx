@@ -10,7 +10,7 @@ interface Props{
     num: number;
     title: string;
     lessons: ILesson[];
-
+    levels: ILevel[]
 }
 
 
@@ -20,13 +20,16 @@ export default function ChapterPage(props: Props) {
         <div className={"chapter-page"}>
             <div className={"chapter-name"}>{props.num} Chapter: {props.title}</div>
             <div className={"chapter-lessons"}>
-                {props.lessons.length>0?props.lessons.map((el, key)=><Lesson num={key} lesson={el} key={key}/>)
-                :
-                    <p style={{
-                        color: "var(--subtitle)",
-                        fontSize:"20pt"
-                    }}>Nothing to Show</p>
-                }
+                <div className={"chapter-flex"}>
+                    {props.lessons.length>0?props.lessons.map((el, key)=><Lesson level={props.levels[el.level-1]} num={key} lesson={el} key={key}/>)
+                        :
+                        <p style={{
+                            color: "var(--subtitle)",
+                            fontSize:"20pt"
+                        }}>Nothing to show</p>
+                    }
+                </div>
+
             </div>
         </div>
     )

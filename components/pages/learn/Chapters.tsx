@@ -6,7 +6,8 @@ import {useEffect} from "react";
 
 interface Props {
     chapters: IChapter[]
-    lessons: ILesson[]
+    lessons: ILesson[];
+    levels: ILevel[]
 }
 
 interface ILessons {
@@ -27,7 +28,7 @@ export default function Chapters(props: Props) {
     return (
         <div id={"learn-chapters"}>
             {props.chapters.map((el, key) => {
-                return <ChapterPage lessons={lessons_filter[key]} key={key} num={el.id} title={el.title}/>
+                return <ChapterPage levels={props.levels} lessons={lessons_filter[key]} key={key} num={el.id} title={el.title}/>
             })}
         </div>
     )

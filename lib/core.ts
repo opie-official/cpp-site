@@ -4,12 +4,21 @@ interface ILesson {
     title: string;
     text_: string;
     description: string;
+    lang: string;
+    level: number;
 }
-
+interface ILevel{
+    id: number;
+    level_name: string;
+    color: string;
+}
 
 interface IChapter {
     id: number;
     title: string;
+    number: number;
+    lang: string;
+
 }
 
 
@@ -24,5 +33,7 @@ interface IExample {
 interface AsideArticle {
     id: string;
     title: string;
-    isActive?:boolean
+    isActive?:boolean;
+    level: number;
+    top: number;
 }

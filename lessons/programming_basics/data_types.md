@@ -137,9 +137,9 @@ void means no type.
 
 Commonly used:
 
-- As a function return type
+- As a function return type  
+- For generic pointers  
 
-- For generic pointers
 ```cpp
 void doSomething() {
     // no return value
@@ -156,9 +156,9 @@ std::size_t length = 10;
 
 Important facts:
 
-- Guaranteed to be able to store the size of any object in memory
-- Commonly used with containers and arrays
-- Returned by sizeof
+- Guaranteed to be able to store the size of any object in memory  
+- Commonly used with containers and arrays  
+- Returned by sizeof  
 
 Example:
 ```cpp
@@ -176,11 +176,9 @@ std::string name = "Alice";
 
 Advantages over char[]:
 
-- Automatically manages memory
-
-- Supports many useful operations
-
-- Safe and easy to use
+- Automatically manages memory  
+- Supports many useful operations  
+- Safe and easy to use  
 
 Example operations:
 ```cpp
@@ -201,10 +199,7 @@ std::size_t len = text.length();
 
 > In this lesson, you learned:
 
-- The main built-in data types in C++
-
-- How integer and floating-point types differ
-
-- What std::size_t is used for
-
-- Why std::string is preferred over raw character arrays
+- The main built-in data types in C++  
+- How integer and floating-point types differ  
+- What std::size_t is used for  
+- Why std::string is preferred over raw character arrays  

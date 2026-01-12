@@ -1,27 +1,30 @@
-#lesson-page{
+#lesson-page {
     width: 100vw;
     height: 100vh;
     background: var(--bg);
+    overflow: hidden;
 
 }
-#lesson-content{
+
+#lesson-content {
     display: flex;
     flex: 1 1 auto;
+    min-height: 0;
     height: 100%;
-    overflow-x:visible;
+    overflow-x: visible;
 }
 
 
-#lesson-main{
+#lesson-main {
     width: 85%;
     height: 100%;
     overflow-y: auto;
     position: relative;
-    overflow-x:visible;
+    overflow-x: visible;
     z-index: 20;
 }
 
-#lesson-title{
+#lesson-title {
     margin-top: 5%;
     margin-left: 5%;
 
@@ -29,59 +32,89 @@
     color: white;
 }
 
-#lesson-text{
+#lesson-text {
     margin-top: 5%;
     margin-left: 5%;
     color: white;
     width: 70%;
     line-height: 1.5;
     z-index: 200;
-    & pre{
+    & img{
+        width: 100px;
+    }
+    & hr{
+        margin: 5% 0;
+    }
+    & pre {
+        margin: 5% 0;
+    }
+
+    & code {
+        font-family: "JetBrains Mono", monospace;
+        background: #404040;
+        padding: 0 2%;
+        border-radius: 5px;
+    }
+
+    & p{
         margin: 2% 0;
     }
-    & code{
-        font-family: "JetBrains Mono", monospace;
-
-
-    }
-
-    & p, h1{
-        margin-top: 2%;
+    & h1, & h2, & h3, & h4{
+        margin: 5% 0;
 
     }
-    & p{
+
+    & p {
         text-indent: 1em;
     }
-    & ul{
+
+    & ul {
         margin: 3% 0;
         gap: 10%;
         display: flex;
         flex-direction: column;
     }
 
-    & li{
+    & li {
         list-style-type: disc;
         list-style-position: inside;
         margin-bottom: 1%;
 
     }
 
+    & table {
+        table-layout: fixed;
+        border: 1px solid white;
+        border-collapse: collapse;
+        width: 50%;
+        margin: 2% 0;
+        & * {
+            text-align: start;
+            border: 1px solid white;
+            padding: 1% 5%;
+        }
+    }
+
+    & blockquote {
+        border-left: 3px solid #D9D9D9;
+        margin: 3% 0;
+    }
+
 }
 
-.code-dark{
+.code-dark {
     margin: 2% 0;
     border-radius: 10px;
     display: flex;
     width: fit-content;
     align-items: center;
     justify-content: center;
-    padding:1%;
+    padding: 1%;
     background: #090909;
 }
 
 
-
-#lesson-buttons{
+#lesson-buttons {
     width: 100%;
     height: 15%;
     margin: 10% 0;
@@ -94,10 +127,11 @@
 }
 
 
-#lesson-bt1, #lesson-bt2{
+#lesson-bt1, #lesson-bt2 {
     width: 25%;
     height: 60%;
-    &>button{
+
+    & > button {
         width: 100%;
         height: 100%;
         display: flex;

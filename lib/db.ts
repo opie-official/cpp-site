@@ -239,5 +239,12 @@ namespace API {
         db.close();
         return res;
     }
+
+    export function __getLevels(){
+        db = new Database(db_path);
+        const res = db.prepare("SELECT * FROM lesson_levels").all();
+        db.close();
+        return res;
+    }
 }
 export default API;

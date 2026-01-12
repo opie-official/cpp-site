@@ -7,6 +7,7 @@
     text-decoration: none;
     margin-bottom: 2%;
     flex: 0 0 auto;
+    position: relative;
 }
 
 .lesson-page-in{
@@ -17,6 +18,9 @@
     justify-content: start;
     align-items: center;
     gap: 10%;
+    overflow: visible;
+    position: relative;
+
 }
 
 
@@ -27,6 +31,9 @@
     width: 100%;
     height: 50%;
     gap: 5%;
+    overflow: visible;
+    position: relative;
+
 }
 .lesson-top-num{
     display: flex;
@@ -44,14 +51,26 @@
 .lesson-top-title{
     color: white;
     font-size: 20pt;
+    overflow: visible;
+
+}
+.lesson-top-level{
+    position: absolute;
+    /*width: 8%;*/
+    /*aspect-ratio: 1/1;*/
+    /*left: 95%;*/
+    top: 90%;
+    transition: width 0.5s, left 0.1s;
+    /*transform-origin: center;*/
 }
 
 .lesson-desc{
-    font-size: 15pt;
+    font-size: 12pt;
     color: var(--subtitle);
-    overflow: hidden;
     text-overflow: ellipsis;
     text-align: start;
     width: 100%;
     height: 60%;
+    overflow: visible;
+
 }

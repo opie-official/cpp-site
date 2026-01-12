@@ -58,7 +58,7 @@ const kw = [
     "namespace",
     "typedef",
     "decltype",
-    "",
+    "void",
 ]
 type RuleName = "preproc" | "lib" | "string" | "numb" | "oper" | "id"|"spec" | "comment";
 

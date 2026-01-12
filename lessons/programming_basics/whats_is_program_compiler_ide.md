@@ -26,16 +26,12 @@ Key points:
 
 A compiler is a tool that translates your C++ code into machine code that the computer can execute. This process is called compilation. Steps of compilation:
 
-- **Preprocessing** — handles directives like *#include*.
+- **Preprocessing** — handles directives like *#include*.  
+- **Compilation** — translates code into assembly.  
+- **Assembly** — converts assembly into object code.  
+- **Linking** — combines object code with libraries to produce an executable file.  
 
-- **Compilation** — translates code into assembly. 
-
-- **Assembly** — converts assembly into object code.
-
-- **Linking** — combines object code with libraries to produce an executable file.
-
-Example:  
-```g++ hello.cpp -o hello ./hello g++``` — the compiler command.
+Example: `g++ hello.cpp -o hello ./hello g++` — the compiler command.
 
 - **hello.cpp** — your C++ source file.
 - **-o hello** — output executable named hello.

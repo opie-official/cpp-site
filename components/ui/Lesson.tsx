@@ -2,15 +2,17 @@
 import "./styles/lesson.css"
 
 import Link from "next/link";
-import React from "react";
+import React, {useState} from "react";
 
-interface LessonProps{
+interface LessonProps {
     num: number;
-    lesson: ILesson
+    lesson: ILesson;
+    level: ILevel;
 }
 
 
-export default function Lesson(props: LessonProps){
+export default function Lesson(props: LessonProps) {
+    const [visible, setVisible] = useState(false);
     return (
         <Link href={`/learn/lesson?lesson=${props.lesson.id}`} className={"lesson-page"}>
             <div className={"lesson-page-in"}>
@@ -19,6 +21,28 @@ export default function Lesson(props: LessonProps){
                     <p className={"lesson-top-title"}>{props.lesson.title}</p>
                 </div>
                 <div className={"lesson-desc"}>{props.lesson.description}</div>
+                <div
+                    onMouseEnter={() => setVisible(true)}
+                    onMouseLeave={() => setVisible(false)}
+                    style={{
+                        background: props.level.color,
+                        width: visible? "50%":"",
+                        height: "15%",
+                        aspectRatio: visible?"":"1/1",
+                        left: visible?"55%":"95%",
+                        borderRadius:visible?"20px":"100%",
+
+                    }}
+                    className={"lesson-top-level"}>
+                    <div style={{
+                        color:"black",
+                        display: "flex",
+                        justifyContent:"center",
+                        alignItems:"center",
+                        flexDirection:"column",
+                        visibility: visible ? "visible" : "hidden",
+                    }}>{props.level.level_name}</div>
+                </div>
             </div>
         </Link>
 
