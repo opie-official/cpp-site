@@ -258,7 +258,7 @@ function CodeParser(props: Props) {
             length: i[0].length
         })
     }
-    console.log(JSON.stringify(tokens.map(el => el.val)))
+    // console.log(JSON.stringify(tokens.map(el => el.val)))
     const lexemes: Lexeme[] = []
 
     for (const token of tokens) {

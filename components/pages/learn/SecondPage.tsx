@@ -1,3 +1,4 @@
+'use client'
 import "./styles/second_page.css"
 import * as fs from "node:fs";
 import React from "react";

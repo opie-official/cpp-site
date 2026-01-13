@@ -8,8 +8,8 @@ import API from "@/lib/db";
 
 
 export async function GetChapters(){
-    console.log(JSON.stringify(API))
-    console.log(API.__getChapters)
+    // console.log(JSON.stringify(API))
+    // console.log(API.__getChapters)
     return  API.__getChapters();
 }
 

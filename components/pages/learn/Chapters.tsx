@@ -1,13 +1,15 @@
 'use client'
 import "./styles/chapters.css"
 import ChapterPage from "@/components/pages/learn/ChapterPage";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 
 
 interface Props {
     chapters: IChapter[]
     lessons: ILesson[];
-    levels: ILevel[]
+    levels: ILevel[];
+    complete: number[];
+    setComplete: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
 interface ILessons {
@@ -28,7 +30,7 @@ export default function Chapters(props: Props) {
     return (
         <div id={"learn-chapters"}>
             {props.chapters.map((el, key) => {
-                return <ChapterPage levels={props.levels} lessons={lessons_filter[key]} key={key} num={el.id} title={el.title}/>
+                return <ChapterPage {...props} levels={props.levels} lessons={lessons_filter[key]} key={key} num={el.id} title={el.title}/>
             })}
         </div>
     )

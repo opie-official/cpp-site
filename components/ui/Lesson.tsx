@@ -8,14 +8,29 @@ interface LessonProps {
     num: number;
     lesson: ILesson;
     level: ILevel;
+    contains: boolean;
+    setComplete: React.Dispatch<React.SetStateAction<number[]>>;
+    id:number;
 }
 
 
 export default function Lesson(props: LessonProps) {
     const [visible, setVisible] = useState(false);
     return (
-        <Link href={`/learn/lesson?lesson=${props.lesson.id}`} className={"lesson-page"}>
-            <div className={"lesson-page-in"}>
+        <Link href={`/learn/lesson?lesson=${props.lesson.id}`} className={"lesson-page"}
+              style={{
+                  opacity: props.contains ? 0.5 : 1,
+              }}
+        >
+            <div onClick={()=>{
+                props.setComplete(prev=>{
+                    const res=[...prev];
+                    res.push(props.id)
+                    return [...new Set(res)];
+                })
+            }}
+
+                className={"lesson-page-in"}>
                 <div className={"lesson-top"}>
                     <div className={"lesson-top-num"}>{props.num}</div>
                     <p className={"lesson-top-title"}>{props.lesson.title}</p>

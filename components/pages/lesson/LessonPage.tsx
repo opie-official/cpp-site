@@ -63,7 +63,7 @@ function Aside(props: AsideProps) {
 
         setArticles(list);
         if (headings[0]?.id) setActiveId(headings[0].id);
-        console.log(`head ${JSON.stringify(headings.map(h => ({id: h.id, top: h.offsetTop})))}`)
+        // console.log(`head ${JSON.stringify(headings.map(h => ({id: h.id, top: h.offsetTop})))}`)
 
     }, [props.lesson]);
 
@@ -127,8 +127,8 @@ function Aside(props: AsideProps) {
 
     }, [props.lesson]);
 
-    console.log(`articles: ${JSON.stringify(articles)}`);
-    console.log(`ID: ${activeId}`);
+    // console.log(`articles: ${JSON.stringify(articles)}`);
+    // console.log(`ID: ${activeId}`);
     return (
         <aside id={"lesson-aside"}>
             <p id={"lesson-aside-p"}>On this page</p>
@@ -202,7 +202,7 @@ export default function LessonPage(props: Props) {
         }
 
         function Scroll(e: Event){
-            console.log("scrolled",firstBt, secondBt)
+            // console.log("scrolled",firstBt, secondBt)
             const scroll = (e.target as HTMLDivElement).scrollTop;
             const height = (e.target as HTMLDivElement).scrollHeight-(e.target as HTMLDivElement).clientHeight;
             if (scroll>=80){
@@ -225,7 +225,7 @@ export default function LessonPage(props: Props) {
 
 
     useEffect(() => {
-        console.log(`log ${current} ${first} ${last}`)
+        // console.log(`log ${current} ${first} ${last}`)
         if (prev !== undefined && next !== undefined) {
             setIsButton1(true)
             setIsButton2(true);
@@ -304,7 +304,7 @@ export default function LessonPage(props: Props) {
                                        },
                                        //@ts-ignore
                                        code({node, inline, className, children, ...props}) {
-                                           console.log(`inline ${inline}`)
+                                           // console.log(`inline ${inline}`)
                                            return (<code
                                            >{children?.toString() ?? ""}</code>)
 

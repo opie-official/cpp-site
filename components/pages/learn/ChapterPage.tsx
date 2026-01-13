@@ -10,7 +10,9 @@ interface Props{
     num: number;
     title: string;
     lessons: ILesson[];
-    levels: ILevel[]
+    levels: ILevel[];
+    complete: number[];
+    setComplete:React.Dispatch<React.SetStateAction<number[]>>
 }
 
 
@@ -21,7 +23,16 @@ export default function ChapterPage(props: Props) {
             <div className={"chapter-name"}>{props.num} Chapter: {props.title}</div>
             <div className={"chapter-lessons"}>
                 <div className={"chapter-flex"}>
-                    {props.lessons.length>0?props.lessons.map((el, key)=><Lesson level={props.levels[el.level-1]} num={key} lesson={el} key={key}/>)
+                    {props.lessons.length>0?props.lessons.map((el, key)=>
+                            <Lesson
+                                contains={props.complete.includes(el.id)}
+                                setComplete={props.setComplete}
+                                level={props.levels[el.level-1]}
+                                num={key}
+                                id={el.id}
+                                lesson={el}
+                                key={key}/>
+                        )
                         :
                         <p style={{
                             color: "var(--subtitle)",
