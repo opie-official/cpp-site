@@ -147,9 +147,8 @@ interface LeftAsideProps {
 }
 
 function LeftAside(props: LeftAsideProps) {
-
     const lesson = props.lessons.find(el => el.id == props.lesson)
-    const level = props.levels.find(el => el.id == lesson?.id)
+    const level = props.levels.find(el => el.id == lesson?.level)
 
     return (
         <div id={"lesson-content-left"}>
@@ -204,7 +203,6 @@ export default function LessonPage(props: Props) {
     let prev = sorted.find(el => el.id == current - 1)
     let next = sorted.find(el => el.id == current + 1)
 
-    // console.log(props.lessons)
 
     useEffect(() => {
 

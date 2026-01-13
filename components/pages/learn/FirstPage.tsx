@@ -63,9 +63,6 @@ const texts = [
 
 
 export default function FirstPage(props: Props) {
-
-    console.log("last",props.last)
-    // language=HTML
     return (
         <div id={"learn-first-page"}>
             <div id={"learn-start"}>
@@ -86,7 +83,6 @@ std::atomic<size_t> tail_{0};};
                     </pre>
                     <div id={"learn-code-filter2"}></div>
                 </div>
-                {/*<Spot x={0} y={25} width={100} height={130} />*/}
                 <StartMenu href={`/learn/lesson?lesson=${props.last}`} last={props.last} chapters={props.chapters}/>
             </div>
             <div id={"learn-first-info"}>

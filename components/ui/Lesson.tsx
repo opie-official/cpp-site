@@ -34,7 +34,7 @@ export default function Lesson(props: LessonProps) {
 
                 className={"lesson-page-in"}>
                 <div className={"lesson-top"}>
-                    <div className={"lesson-top-num"}>{props.num}</div>
+                    <div className={"lesson-top-num"}>{props.num+1}</div>
                     <p className={"lesson-top-title"}>{props.lesson.title}</p>
                 </div>
                 <div className={"lesson-desc"}>{props.lesson.description}</div>
