@@ -10,6 +10,8 @@ interface Props {
     levels: ILevel[];
     complete: number[];
     setComplete: React.Dispatch<React.SetStateAction<number[]>>;
+    last: number;
+    setLast: React.Dispatch<React.SetStateAction<number>>;
 }
 
 interface ILessons {
@@ -21,12 +23,9 @@ export default function Chapters(props: Props) {
 
 
     const lessons_filter: ILessons = []
-
-
     for (let i = 0; i < props.chapters.length; i++) {
         lessons_filter[i] = props.lessons.filter((el) => el.chapter == props.chapters[i].id);
     }
-
     return (
         <div id={"learn-chapters"}>
             {props.chapters.map((el, key) => {

@@ -12,7 +12,9 @@ interface Props{
     lessons: ILesson[];
     levels: ILevel[];
     complete: number[];
-    setComplete:React.Dispatch<React.SetStateAction<number[]>>
+    setComplete:React.Dispatch<React.SetStateAction<number[]>>;
+    last: number;
+    setLast:React.Dispatch<React.SetStateAction<number>>;
 }
 
 
@@ -25,6 +27,7 @@ export default function ChapterPage(props: Props) {
                 <div className={"chapter-flex"}>
                     {props.lessons.length>0?props.lessons.map((el, key)=>
                             <Lesson
+                                setLast={props.setLast}
                                 contains={props.complete.includes(el.id)}
                                 setComplete={props.setComplete}
                                 level={props.levels[el.level-1]}

@@ -10,6 +10,7 @@ interface LessonProps {
     level: ILevel;
     contains: boolean;
     setComplete: React.Dispatch<React.SetStateAction<number[]>>;
+    setLast: React.Dispatch<React.SetStateAction<number>>;
     id:number;
 }
 
@@ -23,6 +24,7 @@ export default function Lesson(props: LessonProps) {
               }}
         >
             <div onClick={()=>{
+                props.setLast(props.id)
                 props.setComplete(prev=>{
                     const res=[...prev];
                     res.push(props.id)

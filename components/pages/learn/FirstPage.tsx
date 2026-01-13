@@ -1,20 +1,18 @@
 'use client'
 import "./styles/first_page.css"
-import Spot from "@/components/ui/Spot";
-import {useEffect} from "react";
 import CodeParser from "@/components/ui/CodeParser";
-import {gunzip} from "node:zlib";
 
 
 interface StartProps {
     chapters: number;
-    has: boolean
-    chapter: number;
+    href: string;
+    last: number;
 }
 
 
 interface Props {
     chapters: number;
+    last: number;
 }
 
 
@@ -25,8 +23,15 @@ function StartMenu(props: StartProps) {
             <p id={"learn-start-subtitle"}>{props.chapters} chapters</p>
             <div id={"learn-start-continue"}>
                 {
-                    props.has ?
-                        <button id={"learn-start-has"}>Go to {props.chapter} chapter</button>
+                    props.last>=0 ?
+                        <button
+                            style={{
+                                background :"transparent",
+                                color: "var(--subtitle)",
+                                font: "14pt Roboto"
+                            }}
+
+                            onClick={()=>window.location.href= props.href} id={"learn-start-has"}>Continue with lesson {props.last}</button>
                         :
                         "There`s no progress"
                 }
@@ -58,17 +63,8 @@ const texts = [
 
 
 export default function FirstPage(props: Props) {
-    let has: string | null = null;
-    let json: any;
 
-
-    useEffect(() => {
-        has = localStorage.getItem("cpp-learn-progress")
-        if (has !== null) {
-            json = JSON.parse(has);
-        }
-    }, [])
-
+    console.log("last",props.last)
     // language=HTML
     return (
         <div id={"learn-first-page"}>
@@ -91,7 +87,7 @@ std::atomic<size_t> tail_{0};};
                     <div id={"learn-code-filter2"}></div>
                 </div>
                 {/*<Spot x={0} y={25} width={100} height={130} />*/}
-                <StartMenu chapter={has !== null ? json.chapter : 0} has={has !== null} chapters={props.chapters}/>
+                <StartMenu href={`/learn/lesson?lesson=${props.last}`} last={props.last} chapters={props.chapters}/>
             </div>
             <div id={"learn-first-info"}>
                 {texts.map((el, key) => <Info text={el} key={key}/>)}

@@ -14,30 +14,39 @@ interface Props{
 
 export default function LearnStorage(props: Props) {
     const {chapters, lessons, levels}=props;
-    const [complete, setComplete]=useState<number[]>(() => {
-        if (typeof window === 'undefined') return [];
-        const data = localStorage.getItem('lessons');
-        return data ? JSON.parse(data) : []
-    }
-    )
-    // useEffect(() => {
-    //     const data = localStorage.getItem("lessons");
-    //     if (!data){
-    //         return
-    //     }
-    //     setComplete([...JSON.parse(data)].map(el=>+el))
-    //     console.log(localStorage)
-    // });
+    const [complete, setComplete] = useState<number[]>([]);
+    const [last, setLast]=useState<number>(-1);
+    const [hydrated, setHydrated] = useState(false);
 
     useEffect(() => {
-        const data = [...complete];
-        console.log("complete", data)
-        localStorage.setItem("lessons", JSON.stringify(data));
-    }, [complete]);
+        const raw = localStorage.getItem('lessons');
+        const raw2 = localStorage.getItem("last")
+        if (raw) {
+            setComplete(JSON.parse(raw));
+        }
+        if (raw2){
+            setLast(JSON.parse(raw2))
+        }
+        setHydrated(true);
+    }, []);
+
+    useEffect(() => {
+        if (!hydrated) return;
+        localStorage.setItem('lessons', JSON.stringify(complete));
+    }, [complete, hydrated]);
+
+    useEffect(() => {
+        if (!hydrated)return;
+        localStorage.setItem("last", JSON.stringify(last));
+    }, [hydrated, last]);
+
+    if (!hydrated){
+        return <div id={"learn-inner"}></div>
+    }
 
     return (
         <div id={"learn-inner"}>
-            <FirstPage chapters={chapters.length}/>
+            <FirstPage last={last} chapters={chapters.length}/>
             <SecondPage/>
             <div id={"learn-levels"}
                  style={{
@@ -75,7 +84,7 @@ export default function LearnStorage(props: Props) {
 
                 }
             </div>
-            <Chapters complete={complete} setComplete={setComplete} levels={levels} chapters={chapters} lessons={lessons}/>
+            <Chapters last={last} setLast={setLast} complete={complete} setComplete={setComplete} levels={levels} chapters={chapters} lessons={lessons}/>
         </div>
     )
 }
