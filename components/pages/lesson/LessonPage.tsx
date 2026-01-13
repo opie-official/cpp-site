@@ -9,7 +9,7 @@ import remarkBreaks from 'remark-breaks';
 import remarkGfm from "remark-gfm"
 import rehypeSanitize from "rehype-sanitize";
 import rehypeRaw from "rehype-raw";
-import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 // import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 // import {oneDark, darcula, materialDark} from 'react-syntax-highlighter/dist/esm/styles/prism';
 import Spot from "@/components/ui/Spot";
@@ -19,28 +19,28 @@ import Link from "next/link";
 interface Props {
     lessons: ILesson[];
     lesson: number;
-    lesson_: ILesson
+    lesson_: ILesson;
+    levels: ILevel[]
 }
 
-interface AsideProps{
+interface RightAsideProps {
     lesson: number;
     firstBt: boolean;
     secondBt: boolean;
-    ref_to: React.RefObject<HTMLDivElement| null>;
+    ref_to: React.RefObject<HTMLDivElement | null>;
 }
 
-function Aside(props: AsideProps) {
+function RightAside(props: RightAsideProps) {
     const [articles, setArticles] = useState<AsideArticle[]>([]);
-    const [activeId, setActiveId] = useState<string | null>(null);
 
-    const ref1=useRef<HTMLButtonElement>(null)
-    const ref2=useRef<HTMLButtonElement>(null)
+    const ref1 = useRef<HTMLButtonElement>(null)
+    const ref2 = useRef<HTMLButtonElement>(null)
 
     useEffect(() => {
         const root = document.getElementById("lesson-text") as HTMLDivElement | null;
         if (!root) return;
 
-        const headings:HTMLHeadingElement[] = Array.from(root.querySelectorAll("h1, h2, h3"));
+        const headings: HTMLHeadingElement[] = Array.from(root.querySelectorAll("h1, h2, h3"));
 
         const list: AsideArticle[] = headings.map((h) => {
             const classname = h.classList[0];
@@ -62,53 +62,25 @@ function Aside(props: AsideProps) {
         });
 
         setArticles(list);
-        if (headings[0]?.id) setActiveId(headings[0].id);
-        // console.log(`head ${JSON.stringify(headings.map(h => ({id: h.id, top: h.offsetTop})))}`)
 
     }, [props.lesson]);
-
-   /* useEffect(() => {
-        const scroller = document.getElementById("lesson-main")!;
-        const headings = Array.from(document.querySelectorAll("#lesson-text h1")) as HTMLElement[];
-
-        const onScroll = () => {
-            const scrollerTop = scroller.getBoundingClientRect().top;
-
-            let current: HTMLElement | null = null;
-            console.log(`head ${(headings)}`)
-            for (const h of headings) {
-                const hTop = h.getBoundingClientRect().top - scrollerTop; // позиция внутри scroller viewport
-                console.log(`top ${hTop} ${h.getBoundingClientRect().top} ${scrollerTop}`);
-                if (hTop <= 80) current = h;  // 80px от верха контейнера
-                else break;
-            }
-
-            if (current) setActiveId(current.id);
-        };
-
-        scroller.addEventListener("scroll", onScroll, {passive: true});
-        onScroll();
-
-        return () => scroller.removeEventListener("scroll", onScroll);
-    }, [props.lesson]);*/
-
-
     useEffect(() => {
         const bt1 = ref1.current;
         const bt2 = ref2.current;
-        if(!bt1 || !bt2){
+        if (!bt1 || !bt2) {
             return;
         }
-        const main=document.getElementById("lesson-main") as HTMLDivElement;
+        const main = document.getElementById("lesson-main") as HTMLDivElement;
 
-        function toTop(){
+        function toTop() {
             main.scrollTo({
                 top: 0,
                 left: 0,
                 behavior: "smooth"
             })
         }
-        function toBottom(){
+
+        function toBottom() {
             main.scrollTo({
                 top: main.scrollHeight,
                 left: 0,
@@ -119,7 +91,7 @@ function Aside(props: AsideProps) {
         bt1.addEventListener("click", toTop);
         bt2.addEventListener("click", toBottom);
 
-        return ()=>{
+        return () => {
             bt1.removeEventListener("click", toTop);
             bt2.removeEventListener("click", toBottom);
         }
@@ -127,8 +99,6 @@ function Aside(props: AsideProps) {
 
     }, [props.lesson]);
 
-    // console.log(`articles: ${JSON.stringify(articles)}`);
-    // console.log(`ID: ${activeId}`);
     return (
         <aside id={"lesson-aside"}>
             <p id={"lesson-aside-p"}>On this page</p>
@@ -137,46 +107,90 @@ function Aside(props: AsideProps) {
                     {articles.map((el, key) => {
                         return <button
                             style={{
-                                // color: el.id == activeId ? `var(--blue)` : "",
                                 marginLeft: `${(el.level - 1) * 10}%`,
                                 font: "10pt Roboto Light"
                             }}
-                            onClick={()=>{
+                            onClick={() => {
                                 const main = props.ref_to.current as HTMLDivElement;
                                 main.scrollTo({
                                     top: el.top,
                                     left: 0,
-                                    behavior:"smooth"
+                                    behavior: "smooth"
                                 })
                             }}
-
-                            /*href={`/learn/lesson?lesson=${props.lesson}#${el.id}`}*/ key={key}>{el.title}</button>
+                            key={key}>{el.title}</button>
                     })}
                 </div>
             </div>
             <div id={"lesson-aside-buttons"}>
                 <button ref={ref1}
-                    style={{
-                        opacity: props.firstBt?"1":"0"
-                    }}
-                    className={"lesson-aside-bt"}>Scroll to top</button>
+                        style={{
+                            opacity: props.firstBt ? "1" : "0"
+                        }}
+                        className={"lesson-aside-bt"}>Scroll to top
+                </button>
                 <button ref={ref2}
-                    style={{
-                        opacity: props.secondBt?"0":"1"
-                    }}
-                    className={"lesson-aside-bt"}>Scroll to bottom</button>
+                        style={{
+                            opacity: props.secondBt ? "0" : "1"
+                        }}
+                        className={"lesson-aside-bt"}>Scroll to bottom
+                </button>
             </div>
         </aside>
+    )
+}
+
+interface LeftAsideProps {
+    lessons: ILesson[];
+    lesson: number;
+    levels: ILevel[];
+}
+
+function LeftAside(props: LeftAsideProps) {
+
+    const lesson = props.lessons.find(el => el.id == props.lesson)
+    const level = props.levels.find(el => el.id == lesson?.id)
+
+    return (
+        <div id={"lesson-content-left"}>
+            <div id={"lesson-left-info"}>
+                <div id={"lesson-left-name"}>
+                    {lesson ? <p>Lesson {lesson.id}: {lesson.title}</p> : "Title is undefined"}
+                </div>
+                <div id={"lesson-left-level"}>
+                    {
+                        level ? <div id={"lesson-left-level-in"}
+                        >
+                            <div id={"lesson-left-level-circle"}
+                                style={{
+                                    background:level.color
+                                }}
+                            ></div>
+                            <p id={"lesson-left-level-p"}>{level.level_name}</p>
+                        </div> : "Level is undefined"
+                    }
+                </div>
+            </div>
+            <div id={"lesson-left-scroll"}>
+                <div id={"lesson-content-left-in"}>
+                    {props.lessons.map((el, key) => {
+                        return <Link style={{
+                            color: props.lesson == el.id ? "var(--blue)" : ""
+                        }} key={key} href={`/learn/lesson?lesson=${el.id}`}>{el.title}</Link>
+                    })}
+                </div>
+            </div>
+        </div>
     )
 }
 
 
 export default function LessonPage(props: Props) {
 
-    const [firstBt, setFirstBt]=useState(false);
-    const [secondBt, setSecondBt]=useState(false);
+    const [firstBt, setFirstBt] = useState(false);
+    const [secondBt, setSecondBt] = useState(false);
 
-    const ref=useRef<HTMLDivElement>(null)
+    const ref = useRef<HTMLDivElement>(null)
 
 
     let len_lessons = props.lessons.length;
@@ -186,8 +200,6 @@ export default function LessonPage(props: Props) {
     let [isButton1, setIsButton1] = useState(true)
     let [isButton2, setIsButton2] = useState(true)
     const sorted = props.lessons.sort((el1, el2) => el1.id - el2.id);
-    let last = sorted[props.lessons.length - 1].id;
-    let first = sorted[0].id;
 
     let prev = sorted.find(el => el.id == current - 1)
     let next = sorted.find(el => el.id == current + 1)
@@ -196,36 +208,34 @@ export default function LessonPage(props: Props) {
 
     useEffect(() => {
 
-        const el =ref.current;
-        if (!el){
+        const el = ref.current;
+        if (!el) {
             return;
         }
 
-        function Scroll(e: Event){
-            // console.log("scrolled",firstBt, secondBt)
+        function Scroll(e: Event) {
             const scroll = (e.target as HTMLDivElement).scrollTop;
-            const height = (e.target as HTMLDivElement).scrollHeight-(e.target as HTMLDivElement).clientHeight;
-            if (scroll>=80){
+            const height = (e.target as HTMLDivElement).scrollHeight - (e.target as HTMLDivElement).clientHeight;
+            if (scroll >= 80) {
                 setFirstBt(true);
-            }else{
+            } else {
                 setFirstBt(false);
             }
-            if (height-scroll<80){
+            if (height - scroll < 80) {
                 setSecondBt(true);
-            }else{
+            } else {
                 setSecondBt(false)
             }
         }
 
         el.addEventListener("scroll", Scroll);
 
-        return ()=>el.removeEventListener("scroll", Scroll);
+        return () => el.removeEventListener("scroll", Scroll);
 
     }, [props.lesson]);
 
 
     useEffect(() => {
-        // console.log(`log ${current} ${first} ${last}`)
         if (prev !== undefined && next !== undefined) {
             setIsButton1(true)
             setIsButton2(true);
@@ -263,15 +273,7 @@ export default function LessonPage(props: Props) {
 
     return (
         <div id={"lesson-content"}>
-            <div id={"lesson-content-left"}>
-                <div id={"lesson-content-left-in"}>
-                    {props.lessons.map((el, key) => {
-                        return <Link style={{
-                            color: props.lesson == el.id ? "var(--blue)" : ""
-                        }} key={key} href={`/learn/lesson?lesson=${el.id}`}>{el.title}</Link>
-                    })}
-                </div>
-            </div>
+            <LeftAside {...props}/>
             <div ref={ref} id={"lesson-main"}>
                 <Spot x={0} y={-60} width={100} height={100}/>
                 <p id={"lesson-title"}>{props.lesson_.title}</p>
@@ -280,7 +282,7 @@ export default function LessonPage(props: Props) {
                                    rehypePlugins={[rehypeRaw, rehypeSanitize]}
                                    components={{
 
-                                       img(e){
+                                       img(e) {
                                            return <img src={e.src}/>
                                        },
 
@@ -293,7 +295,6 @@ export default function LessonPage(props: Props) {
                                                    : // @ts-ignore
                                                    (codeEl?.props?.children?.toString?.() ?? "");
 
-                                           const match = /language-(\w+)/.exec(e.className || '')
                                            return (<div style={{
                                                background: "#090909",
                                                padding: "1% 3%",
@@ -342,7 +343,7 @@ export default function LessonPage(props: Props) {
                     {isButton2 && button2}
                 </div>
             </div>
-            <Aside ref_to={ref} firstBt={firstBt} secondBt={secondBt} lesson={props.lesson}/>
+            <RightAside ref_to={ref} firstBt={firstBt} secondBt={secondBt} lesson={props.lesson}/>
 
         </div>)
 }

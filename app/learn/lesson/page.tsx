@@ -1,7 +1,7 @@
 import "./styles.css"
 import NavBar from "@/components/ui/NavBar";
 import {getLessonsById} from "@/app/learn/lesson/actions";
-import {GetLessons} from "@/app/learn/actions"
+import {GetLessons, GetLevels} from "@/app/learn/actions"
 import {Metadata} from "next";
 import LessonPage from "@/components/pages/lesson/LessonPage"
 import React from "react";
@@ -49,6 +49,7 @@ export default async function Lesson(props: Props) {
 
     const {lesson} = await props.searchParams;
 
+    const levels = await GetLevels() as ILevel[];
 
     let lessons: ILesson[] = await GetLessons() as ILesson[]
 
@@ -56,7 +57,7 @@ export default async function Lesson(props: Props) {
 
     return (<div id={"lesson-page"}>
             <NavBar type={"Learn"}/>
-            <LessonPage lesson={+lesson} lessons={lessons} lesson_={lesson_}/>
+            <LessonPage levels={levels} lesson={+lesson} lessons={lessons} lesson_={lesson_}/>
         </div>
     )
 }
