@@ -37,3 +37,9 @@ interface AsideArticle {
     level: number;
     top: number;
 }
+
+interface AsideArticleEx {
+    id: string;
+    title: string;
+
+}

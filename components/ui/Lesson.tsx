@@ -52,7 +52,7 @@ export default function Lesson(props: LessonProps) {
                     }}
                     className={"lesson-top-level"}>
                     <div style={{
-                        color:"black",
+                        color:props.level.id!=3?"black":"white",
                         display: "flex",
                         justifyContent:"center",
                         alignItems:"center",

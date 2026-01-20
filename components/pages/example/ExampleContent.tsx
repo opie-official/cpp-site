@@ -14,10 +14,10 @@ interface Props{
 
 function Aside(props: {id:string}){
 
-    const [articles, setArticles] = React.useState<AsideArticle[]>([]);
+    const [articles, setArticles] = React.useState<AsideArticleEx[]>([]);
 
     useEffect(() => {
-        const list: AsideArticle[]=[]
+        const list: AsideArticleEx[]=[]
         const root = document.getElementById("example-in") as HTMLDivElement;
         const h = [...root.querySelectorAll("h1")];
         for (let i of h){
