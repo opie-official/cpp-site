@@ -14,7 +14,8 @@ function CodePage(){
 
     return (
         <div id={"main-first-code"}>
-                            <CodeParser text={`#include <iostream>
+            <pre>
+                 <CodeParser text={`#include <iostream>
 using namespace std;
 
 int main(int argc, char** argv) {
@@ -24,7 +25,7 @@ int main(int argc, char** argv) {
     
 }
                             `}/>
-
+            </pre>
         </div>
     )
 
